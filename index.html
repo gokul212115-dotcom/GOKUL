@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gokul — Full-Stack &amp; App Developer</title>
+<meta name="description" content="Gokul — Full-Stack and App Developer based in Pondicherry, India. Mobile apps, IPTV/streaming, and full-stack web.">
+
+<!--
+  ====================================================================
+  EDIT ME — replace these placeholders with your real details:
+  1. Email address            → search for "your.email@example.com"
+  2. WhatsApp number           → search for "91XXXXXXXXXX" (use country
+                                  code + number, no spaces or symbols)
+  3. Instagram handle/link     → search for "yourhandle"
+  4. LinkedIn profile link     → search for "yourprofile"
+  5. Resume file               → add a file named "resume.pdf" in the
+                                  same folder as this index.html
+  6. Project images            → already pointing at images/home.png
+                                  and images/search.png (your existing
+                                  files) — add more under "images/"
+  7. Add a second project      → duplicate a ".channel-card" block in
+                                  the Work section
+  ====================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0A0D10;
+    --bg-elevated:#121720;
+    --bg-card:#161C26;
+    --line:#232B36;
+    --text:#ECEFF2;
+    --muted:#8C99A4;
+    --amber:#FFB22E;
+    --amber-dim:#9A6A1E;
+    --teal:#1F3A45;
+    --teal-glow:#3E7C8C;
+    --live:#FF4D4D;
+    --radius:14px;
+    --max:1100px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--amber); color:#0A0D10; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.04em;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.12em;
+    color:var(--amber);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+    text-transform:uppercase;
+  }
+
+  .eyebrow .ch{
+    color:var(--muted);
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(10,13,16,0.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:17px;
+  }
+  .live-dot{
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--live);
+    box-shadow:0 0 0 0 rgba(255,77,77,0.6);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(255,77,77,0.55); }
+    70%{ box-shadow:0 0 0 8px rgba(255,77,77,0); }
+    100%{ box-shadow:0 0 0 0 rgba(255,77,77,0); }
+  }
+  .navlinks{
+    display:flex;
+    gap:28px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.06em;
+  }
+  .navlinks a{
+    color:var(--muted);
+    transition:color 0.2s;
+  }
+  .navlinks a:hover{ color:var(--amber); }
+  .navlinks .ch-num{ color:var(--amber-dim); margin-right:6px; }
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:1px solid var(--line);
+    border-radius:8px;
+    color:var(--text);
+    width:38px; height:38px;
+    cursor:pointer;
+  }
+
+  @media (max-width:760px){
+    .navlinks{
+      position:fixed;
+      top:64px; right:24px; left:24px;
+      background:var(--bg-elevated);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      flex-direction:column;
+      gap:0;
+      padding:8px;
+      display:none;
+      box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    }
+    .navlinks.open{ display:flex; }
+    .navlinks a{
+      padding:12px 10px;
+      border-radius:8px;
+    }
+    .navlinks a:hover{ background:rgba(255,178,46,0.08); }
+    .nav-toggle{ display:flex; align-items:center; justify-content:center; }
+  }
+
+  /* ---------- HERO / MONITOR ---------- */
+  .hero{
+    padding:150px 0 90px;
+    position:relative;
+  }
+  .monitor{
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:
+      radial-gradient(120% 140% at 20% 0%, rgba(62,124,140,0.18), transparent 55%),
+      var(--bg-elevated);
+    padding:54px 44px;
+    position:relative;
+    overflow:hidden;
+  }
+  .monitor::before{
+    /* scanlines */
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.025) 0px,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events:none;
+  }
+  .monitor::after{
+    /* tuning static, fades out on load */
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
+    background-size:3px 3px;
+    opacity:0.5;
+    animation:static-fade 1.4s ease forwards;
+    pointer-events:none;
+  }
+  @keyframes static-fade{
+    0%{ opacity:0.55; }
+    60%{ opacity:0.22; }
+    100%{ opacity:0; }
+  }
+
+  .channel-readout{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--muted);
+    margin-bottom:34px;
+    position:relative;
+    z-index:1;
+  }
+  .signal-bars{
+    display:flex;
+    align-items:flex-end;
+    gap:3px;
+    height:14px;
+  }
+  .signal-bars span{
+    width:3px;
+    background:var(--amber);
+    display:block;
+    animation:bar 1.6s ease-in-out infinite;
+  }
+  .signal-bars span:nth-child(1){ height:30%; animation-delay:0s; }
+  .signal-bars span:nth-child(2){ height:55%; animation-delay:0.15s; }
+  .signal-bars span:nth-child(3){ height:80%; animation-delay:0.3s; }
+  .signal-bars span:nth-child(4){ height:100%; animation-delay:0.45s; }
+  @keyframes bar{
+    0%,100%{ transform:scaleY(0.6); }
+    50%{ transform:scaleY(1); }
+  }
+
+  .hero h1{
+    position:relative;
+    z-index:1;
+    font-size:clamp(34px, 6vw, 58px);
+    line-height:1.08;
+    max-width:760px;
+  }
+  .hero h1 .accent{ color:var(--amber); }
+
+  .hero p.lede{
+    position:relative;
+    z-index:1;
+    margin-top:20px;
+    color:var(--muted);
+    font-size:18px;
+    max-width:540px;
+  }
+
+  .hero-actions{
+    position:relative;
+    z-index:1;
+    display:flex;
+    gap:14px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    padding:13px 22px;
+    border-radius:9px;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    transition:transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    border:1px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:var(--amber);
+    color:#11161D;
+    font-weight:600;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(255,178,46,0.25); }
+  .btn-ghost{
+    border-color:var(--line);
+    color:var(--text);
+    background:transparent;
+  }
+  .btn-ghost:hover{ border-color:var(--amber); color:var(--amber); transform:translateY(-2px); }
+  .btn .rec-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--live);
+  }
+
+  /* ---------- SECTION shells ---------- */
+  section{
+    padding:90px 0;
+    border-top:1px solid var(--line);
+  }
+  .section-head{
+    margin-bottom:42px;
+  }
+  .section-head h2{
+    font-size:clamp(26px, 3.4vw, 34px);
+    margin-top:6px;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:50px;
+    align-items:start;
+  }
+  .about-grid p{ color:var(--muted); font-size:16px; }
+  .about-grid p + p{ margin-top:16px; }
+
+  .freq-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+  }
+  .freq-row{
+    display:flex;
+    justify-content:space-between;
+    padding:11px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .freq-row:last-child{ border-bottom:none; }
+  .freq-row span:first-child{ color:var(--muted); font-family:'JetBrains Mono', monospace; font-size:12.5px; }
+  .freq-row span:last-child{ font-weight:500; text-align:right; }
+
+  @media (max-width:760px){
+    .about-grid{ grid-template-columns:1fr; gap:28px; }
+  }
+
+  /* ---------- SKILLS ---------- */
+  .band{ margin-bottom:30px; }
+  .band-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:14px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    padding:9px 16px;
+    border-radius:20px;
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    font-size:14px;
+    transition:border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .chip:hover{
+    border-color:var(--amber);
+    color:var(--amber);
+    transform:translateY(-2px);
+  }
+
+  /* ---------- WORK / CHANNEL CARDS ---------- */
+  .channel-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px;
+    margin-bottom:24px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .channel-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 24px 50px rgba(0,0,0,0.45);
+    border-color:var(--teal-glow);
+  }
+  .channel-card-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:10px;
+  }
+  .channel-card-head .ch-num{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--amber);
+    font-size:14px;
+  }
+  .channel-card h3{ font-size:21px; }
+  .channel-card p{ color:var(--muted); margin-top:8px; max-width:640px; }
+  .tag-row{ display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:5px 10px;
+    border-radius:6px;
+  }
+  .shot-row{ display:flex; gap:14px; margin-top:18px; flex-wrap:wrap; }
+  .shot-row img{
+    width:160px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    display:block;
+  }
+  .channel-card .btn{ margin-top:18px; }
+
+  /* placeholder card */
+  .channel-card.placeholder{
+    border-style:dashed;
+    color:var(--muted);
+  }
+  .channel-card.placeholder h3{ color:var(--muted); }
+
+  /* ---------- EXPERIENCE ---------- */
+  .log-entry{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:24px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .log-entry:last-child{ border-bottom:none; }
+  .log-entry .when{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--amber-dim);
+    font-size:13px;
+    padding-top:3px;
+  }
+  .log-entry h3{ font-size:18px; margin-bottom:6px; }
+  .log-entry p{ color:var(--muted); font-size:15px; }
+
+  @media (max-width:600px){
+    .log-entry{ grid-template-columns:1fr; gap:6px; }
+  }
+
+  /* ---------- CONTACT / REMOTE ---------- */
+  .remote{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:30px;
+    align-items:center;
+  }
+  .remote p{ color:var(--muted); max-width:420px; }
+  .remote-buttons{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:12px;
+  }
+  .remote-btn{
+    background:var(--bg-elevated);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 14px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    transition:border-color 0.2s, transform 0.2s, color 0.2s;
+  }
+  .remote-btn svg{ width:20px; height:20px; }
+  .remote-btn:hover{
+    border-color:var(--amber);
+    color:var(--amber);
+    transform:translateY(-3px);
+  }
+
+  @media (max-width:760px){
+    .remote{ grid-template-columns:1fr; }
+    .remote-buttons{ grid-template-columns:repeat(3,1fr); }
+  }
+
+  footer{
+    padding:36px 0 50px;
+    text-align:center;
+    color:var(--muted);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="live-dot" aria-hidden="true"></span>
+      GOKUL
+    </div>
+    <nav class="navlinks" id="navlinks">
+      <a href="#about"><span class="ch-num">CH01</span>ABOUT</a>
+      <a href="#skills"><span class="ch-num">CH02</span>SKILLS</a>
+      <a href="#work"><span class="ch-num">CH03</span>WORK</a>
+      <a href="#experience"><span class="ch-num">CH04</span>EXPERIENCE</a>
+      <a href="#contact"><span class="ch-num">CH05</span>CONTACT</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="wrap">
+      <div class="monitor">
+        <div class="channel-readout">
+          <span class="mono">CH 01 · GOKUL.DEV</span>
+          <span style="display:flex; align-items:center; gap:8px;">
+            <span class="signal-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+            ON AIR
+          </span>
+        </div>
+        <h1>Building products that ship — <span class="accent">mobile to web.</span></h1>
+        <p class="lede">Full-stack &amp; app developer in Pondicherry, India. I've shipped Android streaming apps used on live TV, and I build full-stack web products the same way — fast, reliable, and built to handle real traffic.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="resume.pdf" download>
+            <span class="rec-dot" aria-hidden="true"></span> DOWNLOAD RESUME
+          </a>
+          <a class="btn btn-ghost" href="#work">VIEW WORK →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ch">CH01</span> ABOUT</div>
+        <h2>Who's broadcasting</h2>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p>I'm Gokul, a full-stack and app developer based in Pondicherry, India. I started in Android — building IPTV and live-streaming apps with Kotlin, MVVM, and ExoPlayer — and I've since carried that same discipline for performance and clean architecture into full-stack web development.</p>
+          <p>I like products where reliability actually matters: live video, real-time data, things that can't just quietly break. Whether it's a mobile app or a web app, I care about the same things — clean architecture, fast load times, and an interface that doesn't get in the way.</p>
+        </div>
+        <div class="freq-card reveal">
+          <div class="freq-row"><span>ROLE</span><span>Full-Stack &amp; App Developer</span></div>
+          <div class="freq-row"><span>BASED IN</span><span>Pondicherry, India</span></div>
+          <div class="freq-row"><span>FOCUS</span><span>Android · Web · Streaming</span></div>
+          <div class="freq-row"><span>STATUS</span><span>Open to opportunities</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ch">CH02</span> SKILLS</div>
+        <h2>Frequency bands</h2>
+      </div>
+
+      <div class="band reveal">
+        <div class="band-label">Mobile / Android</div>
+        <div class="chips">
+          <span class="chip">Kotlin</span>
+          <span class="chip">Java</span>
+          <span class="chip">Android SDK</span>
+          <span class="chip">Retrofit</span>
+          <span class="chip">ExoPlayer</span>
+          <span class="chip">Glide</span>
+          <span class="chip">MVVM</span>
+        </div>
+      </div>
+
+      <div class="band reveal">
+        <!-- EDIT: adjust this band to match your actual full-stack stack -->
+        <div class="band-label">Full-Stack / Web</div>
+        <div class="chips">
+          <span class="chip">HTML &amp; CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">React</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">REST APIs</span>
+          <span class="chip">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ch">CH03</span> WORK</div>
+        <h2>What's currently playing</h2>
+      </div>
+
+      <div class="channel-card reveal">
+        <div class="channel-card-head">
+          <span class="ch-num">CH 03.1</span>
+          <h3>IPTV Streaming App</h3>
+        </div>
+        <p>A Smart TV IPTV application with live streaming, category filtering, and on-screen search — built for Android TV.</p>
+        <div class="tag-row">
+          <span class="tag">M3U8 LIVE STREAM</span>
+          <span class="tag">ANDROID TV</span>
+          <span class="tag">EXOPLAYER</span>
+        </div>
+        <div class="shot-row">
+          <img src="images/home.png" alt="IPTV app home screen">
+          <img src="images/search.png" alt="IPTV app search screen">
+        </div>
+        <a class="btn btn-ghost" href="#">VIEW PROJECT →</a>
+      </div>
+
+      <!-- EDIT: duplicate this block to add a real second project -->
+      <div class="channel-card placeholder reveal">
+        <div class="channel-card-head">
+          <span class="ch-num">CH 03.2</span>
+          <h3>Your next project goes here</h3>
+        </div>
+        <p>Add a full-stack web project to show the range — even a small one counts. Swap this card for the real thing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ch">CH04</span> EXPERIENCE</div>
+        <h2>Broadcast log</h2>
+      </div>
+
+      <div class="log-entry reveal">
+        <div class="when">CURRENT</div>
+        <div>
+          <h3>Android Developer — Ridsys Tech</h3>
+          <p>Developed Android applications, integrated REST APIs with Retrofit, and followed MVVM architecture for scalable, maintainable apps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="ch">CH05</span> CONTACT</div>
+        <h2>Tune in directly</h2>
+      </div>
+
+      <div class="remote reveal">
+        <div>
+          <p>Have a project in mind, or just want to talk shop on streaming apps and full-stack builds? Reach out on whichever channel works for you.</p>
+          <a class="btn btn-primary" href="resume.pdf" download style="margin-top:18px;">
+            <span class="rec-dot" aria-hidden="true"></span> DOWNLOAD RESUME
+          </a>
+        </div>
+        <div class="remote-buttons">
+          <!-- EDIT: replace your.email@example.com -->
+          <a class="remote-btn" href="mailto:your.email@example.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            EMAIL
+          </a>
+          <!-- EDIT: replace 91XXXXXXXXXX with your WhatsApp number incl. country code -->
+          <a class="remote-btn" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 1 1-3.8-7.1L21 3l-1 3.6a8.46 8.46 0 0 1 1 4.9Z"/><path d="M8 10.5c.3 2 2.5 4.2 4.5 4.5"/></svg>
+            WHATSAPP
+          </a>
+          <!-- EDIT: replace yourhandle -->
+          <a class="remote-btn" href="https://instagram.com/yourhandle" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg>
+            INSTAGRAM
+          </a>
+          <!-- EDIT: replace yourprofile -->
+          <a class="remote-btn" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v6M7 7v.5M11 16v-3.5a2 2 0 0 1 4 0V16M11 12.5v-.01"/></svg>
+            LINKEDIN
+          </a>
+          <a class="remote-btn" href="https://github.com/gokul0615" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.64-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.35 4.69-4.58 4.93.36.31.68.93.68 1.87v2.78c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+            GITHUB
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Gokul · Full-Stack &amp; App Developer · Pondicherry, India
+</footer>
+
+<script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navlinks = document.getElementById('navlinks');
+  navToggle.addEventListener('click', () => {
+    const open = navlinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navlinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navlinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
